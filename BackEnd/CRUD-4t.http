@@ -1,0 +1,84 @@
+@host = http://localhost:5093
+
+
+GET {{host}}/api/fazendas
+Accept: application/json
+
+###
+GET {{host}}/api/fazendas/1
+Accept: application/json
+
+###
+POST {{host}}/api/fazendas
+Content-Type: application/json
+
+{
+  "cod_fazenda": 6,
+  "nome": "Fazenda Primavera",
+  "area_HA": "250"
+}
+
+###
+PUT {{host}}/api/fazendas/1
+Content-Type: application/json
+
+{
+  "cod_fazenda": 1,
+  "nome": "Fazenda Atualizada",
+  "area_HA": "300"
+}
+
+###
+DELETE {{host}}/api/fazendas/1
+
+
+###
+
+GET {{host}}/api/produtores
+Accept: application/json
+
+###
+POST {{host}}/api/produtores
+Content-Type: application/json
+
+{
+  "cod_Produtor": 1,
+  "nome": "João da Silva"
+}
+
+###
+
+GET {{host}}/api/operacoes
+Accept: application/json
+
+###
+POST {{host}}/api/operacoes
+Content-Type: application/json
+
+{
+  "cod_Operacao": 5,
+  "descricao": "Plantio de milho"
+}
+
+###
+
+GET {{host}}/api/movimentacoes
+Accept: application/json
+
+###
+GET {{host}}/api/movimentacoes/1
+Accept: application/json
+
+###
+POST {{host}}/api/movimentacoes
+Content-Type: application/json
+
+{
+  "cod_fazenda": 1,
+  "cod_Produtor": 1,
+  "cod_Operacao": 1,
+  "data": "2025-07-03"
+}
+
+###
+DELETE {{host}}/api/movimentacoes/1
