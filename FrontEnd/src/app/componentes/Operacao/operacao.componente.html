@@ -1,0 +1,48 @@
+<h2>Lista de Operações</h2>
+
+<div style="margin-bottom: 20px;">
+  <mat-form-field appearance="outline" style="margin-right: 10px;">
+    <mat-label>Descrição da Operação</mat-label>
+    <input matInput [(ngModel)]="novaOperacao.descricao" placeholder="Ex: Plantio, Colheita, Irrigação">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="adicionar()">
+    <mat-icon>add</mat-icon> Adicionar
+  </button>
+</div>
+
+<mat-divider></mat-divider>
+
+<mat-list>
+  <mat-list-item *ngFor="let item of dados">
+    <div *ngIf="editarOperacao?.cod_Operacao !== item.cod_Operacao" style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+      <span>
+        <strong>Código:</strong> {{ item.cod_Operacao }} | 
+        <strong>Descrição:</strong> {{ item.descricao }}
+      </span>
+      <span>
+        <button mat-icon-button color="primary" (click)="selecionarParaEdicao(item)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deletar(item.cod_Operacao)" [disabled]="!item.cod_Operacao">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </span>
+    </div>
+
+    <div *ngIf="editarOperacao?.cod_Operacao === item.cod_Operacao" style="width: 100%;">
+      <mat-form-field appearance="outline" style="width: 40%; margin-right: 10px;">
+        <mat-label>Descrição</mat-label>
+        <input matInput [(ngModel)]="editarOperacao.descricao">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="salvarEdicao()">
+        <mat-icon>save</mat-icon> Salvar
+      </button>
+
+      <button mat-button (click)="cancelarEdicao()">
+        <mat-icon>close</mat-icon> Cancelar
+      </button>
+    </div>
+  </mat-list-item>
+</mat-list>

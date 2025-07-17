@@ -1,0 +1,165 @@
+/* Layout principal do painel admin */
+.admin-layout {
+  display: flex;
+  height: 100vh;
+  background: #f4f7fa;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* Sidebar (menu lateral) */
+.sidebar {
+  width: 250px;
+  background: #23272b;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.08);
+}
+.sidebar-header {
+  padding: 24px 0 12px 0;
+  text-align: center;
+  border-bottom: 1px solid #333;
+}
+.logo {
+  font-size: 1.6rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  line-height: 1.2;
+  color: #fff;
+}
+.sidebar-menu {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+}
+.sidebar-section {
+  font-size: 0.9rem;
+  color: #b0b8c1;
+  margin: 0 0 10px 24px;
+  letter-spacing: 1px;
+}
+.sidebar button {
+  background: none;
+  border: none;
+  color: #fff;
+  text-align: left;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 6px 0 0 6px;
+  margin-bottom: 4px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.sidebar button.active, .sidebar button:hover {
+  background: #181b1f;
+  color: #4fc3f7;
+}
+.material-icons {
+  font-size: 1.4em;
+  vertical-align: middle;
+}
+
+/* Main content area */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #f4f7fa;
+  min-width: 0;
+}
+
+/* Header azul */
+.main-header {
+  background: #4fc3f7;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 32px;
+  height: 64px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.menu-icon {
+  font-size: 2rem;
+  cursor: pointer;
+  color: #fff;
+}
+.app-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.dashboard-link {
+  font-size: 1rem;
+  color: #e3f2fd;
+  margin-left: 8px;
+}
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.user-info {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+}
+.role {
+  font-size: 0.9em;
+  color: #b3e5fc;
+  margin-left: 4px;
+}
+
+/* Área principal de conteúdo */
+.main-section {
+  flex: 1;
+  padding: 32px 32px 0 32px;
+  background: #f4f7fa;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+  .admin-layout {
+    flex-direction: column;
+  }
+  .sidebar {
+    flex-direction: row;
+    width: 100vw;
+    min-width: unset;
+    height: auto;
+    border-bottom: 2px solid #222;
+  }
+  .sidebar-header, .sidebar-section {
+    display: none;
+  }
+  .sidebar button {
+    flex: 1;
+    justify-content: center;
+    border-radius: 0;
+    padding: 12px 0;
+    font-size: 1rem;
+  }
+  .main-content {
+    padding: 0;
+  }
+  .main-header {
+    padding: 0 12px;
+    height: 56px;
+  }
+  .main-section {
+    padding: 16px 4px 0 4px;
+  }
+}
+  

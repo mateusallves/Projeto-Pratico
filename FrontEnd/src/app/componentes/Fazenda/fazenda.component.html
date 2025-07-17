@@ -1,0 +1,59 @@
+<h2>Lista de Fazendas</h2>
+
+<div style="margin-bottom: 20px;">
+  <mat-form-field appearance="outline" style="margin-right: 10px;">
+    <mat-label>Nome da Fazenda</mat-label>
+    <input matInput [(ngModel)]="novaFazenda.nome" placeholder="Ex: Fazenda Boa Vista">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Área (ha)</mat-label>
+    <input matInput type="number" [(ngModel)]="novaFazenda.area_HA" placeholder="Ex: 100" min="0.01" step="0.01">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="adicionar()">
+    <mat-icon>add</mat-icon> Adicionar
+  </button>
+</div>
+
+<mat-divider></mat-divider>
+
+<mat-list>
+  <mat-list-item *ngFor="let item of dados">
+    <div *ngIf="editarFazenda?.cod_fazenda !== item.cod_fazenda" style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+      <span>
+        <strong>Código:</strong> {{ item.cod_fazenda }} | 
+        <strong>Nome:</strong> {{ item.nome }} | 
+        <strong>Área:</strong> {{ item.area_HA }} ha
+      </span>
+      <span>
+        <button mat-icon-button color="primary" (click)="selecionarParaEdicao(item)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deletar(item.cod_fazenda)" [disabled]="!item.cod_fazenda">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </span>
+    </div>
+
+    <div *ngIf="editarFazenda?.cod_fazenda === item.cod_fazenda" style="width: 100%;">
+      <mat-form-field appearance="outline" style="width: 40%; margin-right: 10px;">
+        <mat-label>Nome</mat-label>
+        <input matInput [(ngModel)]="editarFazenda.nome">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" style="width: 40%;">
+        <mat-label>Área (ha)</mat-label>
+        <input matInput type="number" [(ngModel)]="editarFazenda.area_HA" min="0.01" step="0.01">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="salvarEdicao()">
+        <mat-icon>save</mat-icon> Salvar
+      </button>
+
+      <button mat-button (click)="cancelarEdicao()">
+        <mat-icon>close</mat-icon> Cancelar
+      </button>
+    </div>
+  </mat-list-item>
+</mat-list>

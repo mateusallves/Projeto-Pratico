@@ -1,0 +1,80 @@
+<h2>Lista de Movimentações</h2>
+
+<div style="margin-bottom: 20px;">
+  <mat-form-field appearance="outline" style="margin-right: 10px;">
+    <mat-label>Data</mat-label>
+    <input matInput type="date" [(ngModel)]="novoMovimentacao.data" placeholder="Selecione a data">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="margin-right: 10px;">
+    <mat-label>Código da Operação</mat-label>
+    <input matInput type="number" [(ngModel)]="novoMovimentacao.cod_Operacao" placeholder="Ex: 1">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="margin-right: 10px;">
+    <mat-label>Código do Produtor</mat-label>
+    <input matInput type="number" [(ngModel)]="novoMovimentacao.cod_Produtor" placeholder="Ex: 1">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="margin-right: 10px;">
+    <mat-label>Código da Fazenda</mat-label>
+    <input matInput type="number" [(ngModel)]="novoMovimentacao.cod_Fazenda" placeholder="Ex: 1">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="adicionar()">
+    <mat-icon>add</mat-icon> Adicionar
+  </button>
+</div>
+
+<mat-divider></mat-divider>
+
+<mat-list>
+  <mat-list-item *ngFor="let item of dados">
+    <div *ngIf="editarMovimentacao?.cod_movimentacao !== item.cod_movimentacao" style="width: 100%; display: flex; justify-content: space-between; align-items: center;">
+      <span>
+        <strong>Data:</strong> {{ item.data }} | 
+        <strong>Operação:</strong> {{ item.cod_Operacao }} | 
+        <strong>Produtor:</strong> {{ item.cod_Produtor }} | 
+        <strong>Fazenda:</strong> {{ item.cod_Fazenda }}
+      </span>
+      <span>
+        <button mat-icon-button color="primary" (click)="selecionarParaEdicao(item)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deletar(item.cod_movimentacao)" [disabled]="!item.cod_movimentacao">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </span>
+    </div>
+
+    <div *ngIf="editarMovimentacao?.cod_movimentacao === item.cod_movimentacao" style="width: 100%;">
+      <mat-form-field appearance="outline" style="width: 20%; margin-right: 10px;">
+        <mat-label>Data</mat-label>
+        <input matInput type="date" [(ngModel)]="editarMovimentacao.data">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" style="width: 20%; margin-right: 10px;">
+        <mat-label>Código da Operação</mat-label>
+        <input matInput type="number" [(ngModel)]="editarMovimentacao.cod_Operacao">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" style="width: 20%; margin-right: 10px;">
+        <mat-label>Código do Produtor</mat-label>
+        <input matInput type="number" [(ngModel)]="editarMovimentacao.cod_Produtor">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" style="width: 20%; margin-right: 10px;">
+        <mat-label>Código da Fazenda</mat-label>
+        <input matInput type="number" [(ngModel)]="editarMovimentacao.cod_Fazenda">
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="salvarEdicao()">
+        <mat-icon>save</mat-icon> Salvar
+      </button>
+
+      <button mat-button (click)="cancelarEdicao()">
+        <mat-icon>close</mat-icon> Cancelar
+      </button>
+    </div>
+  </mat-list-item>
+</mat-list>

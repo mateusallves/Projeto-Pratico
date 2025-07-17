@@ -1,0 +1,56 @@
+<div class="admin-layout">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">CRUD<br>Tela do Admin</div>
+    </div>
+    <nav class="sidebar-menu">
+      <div class="sidebar-section">Lista de Fazendas</div>
+      <button [class.active]="paginaAtual==='home'" (click)="exibirPagina('home')">
+        <span class="material-icons">home</span> Início
+      </button>
+      <button [class.active]="paginaAtual==='fazenda'" (click)="exibirPagina('fazenda')">
+        <span class="material-icons">agriculture</span> Fazendas
+      </button>
+      <button [class.active]="paginaAtual==='produtor'" (click)="exibirPagina('produtor')">
+        <span class="material-icons">person</span> Produtores
+      </button>
+      <button [class.active]="paginaAtual==='operacao'" (click)="exibirPagina('operacao')">
+        <span class="material-icons">build</span> Operações
+      </button>
+      <button [class.active]="paginaAtual==='movimentação'" (click)="exibirPagina('movimentação')">
+        <span class="material-icons">swap_horiz</span> Movimentações
+      </button>
+    </nav>
+  </aside>
+  <main class="main-content">
+    <header class="main-header">
+      <div class="header-left">
+        <span class="material-icons menu-icon">menu</span>
+        <span class="app-title">Admin dashboard</span>
+      </div>
+      <div class="header-right">
+
+      </div>
+    </header>
+    <section class="main-section">
+      <ng-container [ngSwitch]="paginaAtual">
+        <div *ngSwitchCase="'home'">
+          <h2>Bem-vindo ao sistema</h2>
+          <p>Escolha uma opção no menu.</p>
+        </div>
+        <div *ngSwitchCase="'fazenda'">
+          <fazenda-componente></fazenda-componente>
+        </div>
+        <div *ngSwitchCase="'produtor'">
+          <produtor-componente></produtor-componente>
+        </div>
+        <div *ngSwitchCase="'operacao'">
+          <operacao-componente></operacao-componente>
+        </div>
+        <div *ngSwitchCase="'movimentação'">
+          <movimentacao-componente></movimentacao-componente>
+        </div>
+      </ng-container>
+    </section>
+  </main>
+</div>
